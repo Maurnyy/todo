@@ -1,0 +1,21 @@
+name: Github Actions demo
+
+on: 
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    name: Testaus ja Buildaus
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v2
+      with:
+        node-version: 16
+    - run: npm install
+    - run: npm test
+    - run: npm run build
+      env: 
+        CI: false
